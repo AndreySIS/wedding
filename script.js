@@ -1,3 +1,17 @@
+function openInvite(){
+  const intro = document.getElementById("intro");
+
+  intro.classList.add("hide");
+
+  document.body.classList.remove("locked");
+
+  setTimeout(()=>{
+    intro.style.display="none";
+  },1000);
+}
+
+/* reveal animation */
+
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll(){
@@ -5,10 +19,7 @@ function revealOnScroll(){
 
   reveals.forEach(el=>{
     const top = el.getBoundingClientRect().top;
-
-    if(top < trigger){
-      el.classList.add("visible");
-    }
+    if(top < trigger) el.classList.add("visible");
   });
 }
 
