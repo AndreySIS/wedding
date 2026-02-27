@@ -549,10 +549,6 @@ function showTildaSuccessPopup() {
 }
 
 document.getElementById("form1134251896").addEventListener("submit", function(e){
-
-    showTildaSuccessPopup();
-    this.reset();
-
     e.preventDefault();
 
     const name = document.querySelector("#in-1531306243545").value;
@@ -562,6 +558,9 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
     const drinks = [...document.querySelectorAll('.t-checkbox:checked')]
         .map(el => el.value)
         .join(", ");
+		
+	showTildaSuccessPopup();
+    this.reset();
 
     fetch("https://script.google.com/macros/s/AKfycbwSqhea-BCSMOX961Jm1TUMePlq0SLxSjEKQ6bBCMHx0jFseSEOxrDa95c4ld0ZF-o/exec", {
         method: "POST",
