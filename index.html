@@ -494,6 +494,61 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 </script> <!-- nominify end --> </div> </div> </div><script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;coordorder=latlong&amp;onload=t_handleYandexApiReady_1134251871"></script>
 <script>
+function showTildaSuccessPopup() {
+
+    // если уже есть — просто показать
+    let popup = document.getElementById("tildaformsuccesspopup");
+
+    if (!popup) {
+
+        popup = document.createElement("div");
+        popup.id = "tildaformsuccesspopup";
+        popup.className = "t-form-success-popup";
+        popup.style.display = "block";
+        popup.style.opacity = "0";
+
+        popup.innerHTML = `
+            <div class="t-form-success-popup__window">
+                <div class="t-form-success-popup__wrapper">
+                    <svg class="t-form-success-popup__close-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 23 23">
+                        <g fill-rule="evenodd">
+                            <path d="M0 1.41L1.4 0l21.22 21.21-1.41 1.42z"></path>
+                            <path d="M21.21 0l1.42 1.4L1.4 22.63 0 21.21z"></path>
+                        </g>
+                    </svg>
+
+                    <svg width="50" height="50" fill="#62C584">
+                        <path d="M25.1 49.28A24.64 24.64 0 0 1 .5 24.68 24.64 24.64 0 0 1 25.1.07a24.64 24.64 0 0 1 24.6 24.6 24.64 24.64 0 0 1-24.6 24.61zm0-47.45A22.87 22.87 0 0 0 2.26 24.68 22.87 22.87 0 0 0 25.1 47.52a22.87 22.87 0 0 0 22.84-22.84A22.87 22.87 0 0 0 25.1 1.83z"></path>
+                        <path d="M22.84 30.53l-4.44-4.45a.88.88 0 1 1 1.24-1.24l3.2 3.2 8.89-8.9a.88.88 0 1 1 1.25 1.26L22.84 30.53z"></path>
+                    </svg>
+
+                    <div class="t-form-success-popup__text t-descr t-descr_sm">
+                        Спасибо! Данные успешно отправлены.
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(popup);
+    }
+
+    // анимация
+    setTimeout(() => popup.style.opacity = "1", 10);
+
+    // закрытие
+    popup.querySelector(".t-form-success-popup__close-icon")
+        .onclick = closePopup;
+
+    popup.onclick = function(e) {
+        if (e.target === popup) closePopup();
+    };
+
+    function closePopup() {
+        popup.style.opacity = "0";
+        setTimeout(() => popup.remove(), 300);
+    }
+}
+
 document.getElementById("form1134251896").addEventListener("submit", function(e){
 
     e.preventDefault();
