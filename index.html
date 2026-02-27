@@ -573,37 +573,7 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
             drinks: drinks
         })
     }).then(() => {
-
-    const popup = document.getElementById("tildaformsuccesspopup");
-
-    // Показать попап
-    popup.style.display = "block";
-
-    setTimeout(() => {
-        popup.style.opacity = "1";
-    }, 10);
-
-    // Закрытие по крестику
-    popup.querySelector(".t-form-success-popup__close-icon")
-        .addEventListener("click", function () {
-            closePopup();
-        });
-
-    // Закрытие по клику вне окна
-    popup.addEventListener("click", function (e) {
-        if (e.target === popup) {
-            closePopup();
-        }
-    });
-
-    function closePopup() {
-        popup.style.opacity = "0";
-        setTimeout(() => {
-            popup.style.display = "none";
-        }, 300);
-    }
-
-    // Сброс формы
+    showTildaSuccessPopup();
     document.getElementById("form1134251896").reset();
 });
 });
