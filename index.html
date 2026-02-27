@@ -519,21 +519,37 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
         })
     }).then(() => {
 
-    const form = document.getElementById("form1134251896");
-    const successBox = form.querySelector(".js-successbox");
+    const popup = document.getElementById("tildaformsuccesspopup");
 
-    // Текст успеха
-    successBox.innerHTML = "Спасибо! Ваш ответ получен ❤️";
+    // Показать попап
+    popup.style.display = "block";
 
-    // Показать блок
-    successBox.style.display = "block";
+    setTimeout(() => {
+        popup.style.opacity = "1";
+    }, 10);
 
-    // Скрыть саму форму
-    form.querySelector(".t-form__inputsbox").style.display = "none";
+    // Закрытие по крестику
+    popup.querySelector(".t-form-success-popup__close-icon")
+        .addEventListener("click", function () {
+            closePopup();
+        });
 
+    // Закрытие по клику вне окна
+    popup.addEventListener("click", function (e) {
+        if (e.target === popup) {
+            closePopup();
+        }
+    });
+
+    function closePopup() {
+        popup.style.opacity = "0";
+        setTimeout(() => {
+            popup.style.display = "none";
+        }, 300);
+    }
+
+    // Сброс формы
+    document.getElementById("form1134251896").reset();
 });
-
-    this.reset();
-
 });
 </script></body></html>
