@@ -550,6 +550,9 @@ function showTildaSuccessPopup() {
 
 document.getElementById("form1134251896").addEventListener("submit", function(e){
 
+    showTildaSuccessPopup();
+    this.reset();
+
     e.preventDefault();
 
     const name = document.querySelector("#in-1531306243545").value;
@@ -571,11 +574,6 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
             attendance: attendance,
             drinks: drinks
         })
-    }).then(() => {
-
-    showTildaSuccessPopup();
-
-    document.getElementById("form1134251896").reset();
-});
+    });
 });
 </script></body></html>
