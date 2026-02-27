@@ -517,9 +517,22 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
             attendance: attendance,
             drinks: drinks
         })
-    });
+    }).then(() => {
 
-    alert("Спасибо! Ответ отправлен");
+    const form = document.getElementById("form1134251896");
+    const successBox = form.querySelector(".js-successbox");
+
+    // Текст успеха
+    successBox.innerHTML = "Спасибо! Ваш ответ получен ❤️";
+
+    // Показать блок
+    successBox.style.display = "block";
+
+    // Скрыть саму форму
+    form.querySelector(".t-form__inputsbox").style.display = "none";
+
+});
+
     this.reset();
 
 });
