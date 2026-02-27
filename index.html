@@ -493,36 +493,4 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     });
 </script> <!-- nominify end --> </div> </div> </div><script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;coordorder=latlong&amp;onload=t_handleYandexApiReady_1134251871"></script>
-<script>
-document.getElementById("form1134251896").addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    const name = document.querySelector("#in-1531306243545").value;
-
-    const attendance = document.querySelector('input[name="Сможете ли присутствовать на нашем торжестве?"]:checked')?.value || "";
-
-    const drinks = [...document.querySelectorAll('.t-checkbox:checked')]
-        .map(el => el.value)
-        .join(", ");
-
-    fetch("https://script.google.com/macros/s/AKfycbwSqhea-BCSMOX961Jm1TUMePlq0SLxSjEKQ6bBCMHx0jFseSEOxrDa95c4ld0ZF-o/exec", {
-        method: "POST",
-        body: JSON.stringify({
-            name: name,
-            attendance: attendance,
-            drinks: drinks
-        })
-    })
-    .then(r=>r.json())
-    .then(()=>{
-
-        alert("Спасибо! Ответ отправлен");
-
-        document.getElementById("form1134251896").reset();
-
-    })
-    .catch(()=>alert("Ошибка отправки"));
-
-});
-</script></body></html>
+</body></html>
