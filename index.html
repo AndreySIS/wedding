@@ -629,26 +629,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const nameInput = document.getElementById("in-1531306243545");
 
   const radioName = "Сможете ли присутствовать на нашем торжестве?";
-  const drinksCheckboxes = document.querySelectorAll(
+  const drinksGroup = document.querySelector(
+    '.t-input-group[data-field-name="Что предпочитаете из напитков?"]'
+  );
+  const drinksCheckboxes = drinksGroup.querySelectorAll(
     'input[type="checkbox"].t-checkbox'
   );
 
   function addGlow(element) {
     element.style.transition = "box-shadow 0.3s ease";
-    element.style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.6)";
+    element.style.boxShadow = "0 0 12px rgba(255, 0, 0, 0.5)";
     setTimeout(() => {
       element.style.boxShadow = "none";
-    }, 3000);
-  }
-
-  function addGlowGroup(elements) {
-    elements.forEach(el => {
-      el.style.transition = "box-shadow 0.3s ease";
-      el.style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.6)";
-    });
-
-    setTimeout(() => {
-      elements.forEach(el => el.style.boxShadow = "none");
     }, 3000);
   }
 
@@ -668,10 +660,10 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     if (!selectedRadio) {
-      const radios = document.querySelectorAll(
-        `input[name="${radioName}"]`
+      const radioGroup = document.querySelector(
+        '.t-input-group[data-field-name="Сможете ли присутствовать на нашем торжестве?"]'
       );
-      addGlowGroup([...radios].map(r => r.closest(".t-radio__control")));
+      addGlow(radioGroup);
       isValid = false;
     }
 
@@ -679,9 +671,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedDrinks = [...drinksCheckboxes].filter(cb => cb.checked);
 
     if (selectedDrinks.length === 0) {
-      addGlowGroup(
-        [...drinksCheckboxes].map(cb => cb.closest(".t-checkbox__control"))
-      );
+      addGlow(drinksGroup);
       isValid = false;
     }
 
@@ -692,21 +682,22 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* ===== Снятие свечения при вводе ===== */
+
   nameInput.addEventListener("input", function () {
     this.style.boxShadow = "none";
   });
 
   document.querySelectorAll(`input[name="${radioName}"]`)
     .forEach(r => r.addEventListener("change", function () {
-      document.querySelectorAll(`input[name="${radioName}"]`)
-        .forEach(el => el.closest(".t-radio__control").style.boxShadow = "none");
+      const radioGroup = document.querySelector(
+        '.t-input-group[data-field-name="Сможете ли присутствовать на нашем торжестве?"]'
+      );
+      radioGroup.style.boxShadow = "none";
     }));
 
   drinksCheckboxes.forEach(cb => {
     cb.addEventListener("change", function () {
-      drinksCheckboxes.forEach(el =>
-        el.closest(".t-checkbox__control").style.boxShadow = "none"
-      );
+      drinksGroup.style.boxShadow = "none";
     });
   });
 
