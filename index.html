@@ -623,7 +623,6 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
     });
 });
 
-<script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("form1134251896");
@@ -634,6 +633,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const drinksGroup = document.querySelector(
     '.t-input-group[data-field-name="Что предпочитаете из напитков?"] .t-input-block'
   );
+
   const drinksCheckboxes = drinksGroup.querySelectorAll(
     'input[type="checkbox"].t-checkbox'
   );
@@ -642,13 +642,12 @@ document.addEventListener("DOMContentLoaded", function () {
     '.t-input-group[data-field-name="Сможете ли присутствовать на нашем торжестве?"] .t-input-block'
   );
 
-  // Подсветка внутрь + наружу
   function addGlow(element) {
     element.style.transition = "box-shadow 0.4s ease";
-    element.style.boxShadow = 
-      "inset 0 0 12px rgba(180, 0, 0, 0.45), 0 0 12px rgba(180, 0, 0, 0.45)";
+    element.style.boxShadow = "0 0 18px rgba(180, 0, 0, 0.45)";
+
     setTimeout(() => {
-      element.style.boxShadow = "none";
+      element.style.boxShadow = "0 0 0 rgba(0,0,0,0)";
     }, 3000);
   }
 
@@ -686,7 +685,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
-  /* ===== Снятие свечения при вводе/выборе ===== */
+  /* ===== Снятие свечения при вводе ===== */
+
   nameInput.addEventListener("input", function () {
     this.style.boxShadow = "none";
   });
@@ -703,5 +703,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-</script>
 </script></body></html>
