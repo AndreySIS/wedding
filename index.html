@@ -548,6 +548,43 @@ function showTildaSuccessPopup() {
     }
 }
 
+function showTildaErrorPopup() {
+
+    let errorPopup = document.getElementById("tilda-popup-for-error");
+
+    if (!errorPopup) {
+
+        errorPopup = document.createElement("div");
+        errorPopup.id = "tilda-popup-for-error";
+        errorPopup.className = "js-form-popup-errorbox tn-form__errorbox-popup";
+        errorPopup.style.display = "none";
+
+        errorPopup.innerHTML = `
+            <div class="t-form__errorbox-text t-text t-text_xs">
+                <p class="t-form__errorbox-item" style="display: block;">
+                    Пожалуйста, заполните все обязательные поля
+                </p>
+            </div>
+            <div class="tn-form__errorbox-close js-errorbox-close">
+                <div class="tn-form__errorbox-close-line tn-form__errorbox-close-line-left"></div>
+                <div class="tn-form__errorbox-close-line tn-form__errorbox-close-line-right"></div>
+            </div>
+        `;
+
+        document.body.appendChild(errorPopup);
+    }
+
+    // показать
+    errorPopup.style.display = "block";
+    document.body.classList.add("t-body_success-popup-showed");
+
+    // закрытие
+    errorPopup.querySelector(".js-errorbox-close").onclick = function () {
+        errorPopup.style.display = "none";
+        document.body.classList.remove("t-body_success-popup-showed");
+    };
+}
+
 document.getElementById("form1134251896").addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -558,6 +595,11 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
     const drinks = [...document.querySelectorAll('.t-checkbox:checked')]
         .map(el => el.value)
         .join(", ");
+		
+	if (!name || !attendance || drinks.length === 0) {
+		showTildaErrorPopup();
+		return;
+	}
 		
 	showTildaSuccessPopup();
     this.reset();
