@@ -682,24 +682,6 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-
-  const form = document.getElementById("form1134251896");
-  const nameInput = document.getElementById("in-1531306243545");
-
-  const radioName = "Сможете ли присутствовать на нашем торжестве?";
-
-  const drinksGroup = document.querySelector(
-    '.t-input-group[data-field-name="Что предпочитаете из напитков?"] .t-input-block'
-  );
-
-  const drinksCheckboxes = drinksGroup.querySelectorAll(
-    'input[type="checkbox"].t-checkbox'
-  );
-
-  const radioGroup = document.querySelector(
-    '.t-input-group[data-field-name="Сможете ли присутствовать на нашем торжестве?"] .t-input-block'
-  );
-
   function addGlow(element) {
     element.style.transition = "box-shadow 0.4s ease";
     element.style.boxShadow = "inset 0 0 12px rgba(180, 0, 0, 0.45), 0 0 12px rgba(180, 0, 0, 0.45)";
@@ -712,6 +694,23 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (e) {
 
     let isValid = true;
+	
+	const form = document.getElementById("form1134251896");
+	const nameInput = document.getElementById("in-1531306243545");
+
+	const radioName = "Сможете ли присутствовать на нашем торжестве?";
+
+	const drinksGroup = document.querySelector(
+	'.t-input-group[data-field-name="Что предпочитаете из напитков?"] .t-input-block'
+	);
+
+	const drinksCheckboxes = drinksGroup.querySelectorAll(
+	'input[type="checkbox"].t-checkbox'
+	);
+
+	const radioGroup = document.querySelector(
+	'.t-input-group[data-field-name="Сможете ли присутствовать на нашем торжестве?"] .t-input-block'
+	);
 
     /* ===== ФИО ===== */
     if (!nameInput.value.trim()) {
