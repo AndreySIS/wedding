@@ -623,6 +623,7 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
     });
 });
 
+<script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("form1134251896");
@@ -630,7 +631,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const radioName = "Сможете ли присутствовать на нашем торжестве?";
 
-  // Блок чекбоксов без заголовка
   const drinksGroup = document.querySelector(
     '.t-input-group[data-field-name="Что предпочитаете из напитков?"] .t-input-block'
   );
@@ -642,10 +642,11 @@ document.addEventListener("DOMContentLoaded", function () {
     '.t-input-group[data-field-name="Сможете ли присутствовать на нашем торжестве?"] .t-input-block'
   );
 
-  // Подсветка с внутренней тенью
-  function addGlowInner(element) {
+  // Подсветка внутрь + наружу
+  function addGlow(element) {
     element.style.transition = "box-shadow 0.4s ease";
-    element.style.boxShadow = "inset 0 0 12px rgba(180, 0, 0, 0.45)";
+    element.style.boxShadow = 
+      "inset 0 0 12px rgba(180, 0, 0, 0.45), 0 0 12px rgba(180, 0, 0, 0.45)";
     setTimeout(() => {
       element.style.boxShadow = "none";
     }, 3000);
@@ -657,7 +658,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ===== ФИО ===== */
     if (!nameInput.value.trim()) {
-      addGlowInner(nameInput);
+      addGlow(nameInput);
       isValid = false;
     }
 
@@ -667,7 +668,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     if (!selectedRadio) {
-      addGlowInner(radioGroup);
+      addGlow(radioGroup);
       isValid = false;
     }
 
@@ -675,7 +676,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedDrinks = [...drinksCheckboxes].filter(cb => cb.checked);
 
     if (selectedDrinks.length === 0) {
-      addGlowInner(drinksGroup);
+      addGlow(drinksGroup);
       isValid = false;
     }
 
@@ -702,4 +703,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+</script>
 </script></body></html>
