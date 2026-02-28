@@ -651,19 +651,24 @@ function showTildaErrorPopup() {
 function setFieldsError(nameElement, attendanceElement, drinksElement) {
 	let isValid = true;
 	
-    /* ===== ФИО ===== */
+	const nameInput = document.getElementById("in-1531306243545"); 
+
     if (!nameElement) {
-      addGlow(nameElement);
+      addGlow(nameInput);
       isValid = false;
     }
+
+	const selectedRadio = document.querySelector( input[name="${radioName}"]:checked );
 
     if (!attendanceElement) {
-      addGlow(attendanceElement);
+      addGlow(selectedRadio);
       isValid = false;
     }
+	
+	const drinksGroup = document.querySelector( '.t-input-group[data-field-name="Что предпочитаете из напитков?"] .t-input-block' );
 
     if (drinksElement.length === 0) {
-      addGlow(drinksElement);
+      addGlow(drinksGroup);
       isValid = false;
     }
 
@@ -671,19 +676,18 @@ function setFieldsError(nameElement, attendanceElement, drinksElement) {
       e.preventDefault();
     }
 	
-	nameElement.addEventListener("input", function () {
-		this.style.boxShadow = "none";
-	  });
-
-	document.querySelectorAll(`input[name="${radioName}"]`)
-	.forEach(r => r.addEventListener("change", function () {
-	  attendanceElement.style.boxShadow = "none";
-	}));
+	nameInput.addEventListener("input", function () { 
+		this.style.boxShadow = "none"; 
+	}); 
 	
-	querySelectorAll( 'input[type="checkbox"].t-checkbox' )
-	.forEach(cb => {cb.addEventListener("change", function () {
-	  drinksGroup.style.boxShadow = "none";
-	});
+	document.querySelectorAll(input[name="${radioName}"]).forEach(r => r.addEventListener("change", function () { 
+		radioGroup.style.boxShadow = "none"; 
+	})); 
+	
+	drinksCheckboxes.forEach(cb => { 
+		cb.addEventListener("change", function () { 
+			drinksGroup.style.boxShadow = "none"; 
+		})
 	});
 }
 
