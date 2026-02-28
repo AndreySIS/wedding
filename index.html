@@ -653,17 +653,17 @@ function setFieldsError(nameElement, attendanceElement, drinksElement) {
 	
     /* ===== ФИО ===== */
     if (!nameElement) {
-      addGlow(nameInput);
+      addGlow(nameElement);
       isValid = false;
     }
 
     if (!attendanceElement) {
-      addGlow(radioGroup);
+      addGlow(attendanceElement);
       isValid = false;
     }
 
-    if (drinks.length === 0) {
-      addGlow(drinksGroup);
+    if (drinksElement.length === 0) {
+      addGlow(drinksElement);
       isValid = false;
     }
 
@@ -671,17 +671,17 @@ function setFieldsError(nameElement, attendanceElement, drinksElement) {
       e.preventDefault();
     }
 	
-	nameInput.addEventListener("input", function () {
+	nameElement.addEventListener("input", function () {
 		this.style.boxShadow = "none";
 	  });
 
 	document.querySelectorAll(`input[name="${radioName}"]`)
 	.forEach(r => r.addEventListener("change", function () {
-	  radioGroup.style.boxShadow = "none";
+	  attendanceElement.style.boxShadow = "none";
 	}));
-
-	drinksCheckboxes.forEach(cb => {
-	cb.addEventListener("change", function () {
+	
+	querySelectorAll( 'input[type="checkbox"].t-checkbox' )
+	.forEach(cb => {cb.addEventListener("change", function () {
 	  drinksGroup.style.boxShadow = "none";
 	});
 	});
