@@ -622,4 +622,93 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
         })
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form = document.getElementById("form1134251896");
+  const nameInput = document.getElementById("in-1531306243545");
+
+  const radioName = "Сможете ли присутствовать на нашем торжестве?";
+  const drinksCheckboxes = document.querySelectorAll(
+    'input[type="checkbox"].t-checkbox'
+  );
+
+  function addGlow(element) {
+    element.style.transition = "box-shadow 0.3s ease";
+    element.style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.6)";
+    setTimeout(() => {
+      element.style.boxShadow = "none";
+    }, 3000);
+  }
+
+  function addGlowGroup(elements) {
+    elements.forEach(el => {
+      el.style.transition = "box-shadow 0.3s ease";
+      el.style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.6)";
+    });
+
+    setTimeout(() => {
+      elements.forEach(el => el.style.boxShadow = "none");
+    }, 3000);
+  }
+
+  form.addEventListener("submit", function (e) {
+
+    let isValid = true;
+
+    /* ===== ФИО ===== */
+    if (!nameInput.value.trim()) {
+      addGlow(nameInput);
+      isValid = false;
+    }
+
+    /* ===== RADIO ===== */
+    const selectedRadio = document.querySelector(
+      `input[name="${radioName}"]:checked`
+    );
+
+    if (!selectedRadio) {
+      const radios = document.querySelectorAll(
+        `input[name="${radioName}"]`
+      );
+      addGlowGroup([...radios].map(r => r.closest(".t-radio__control")));
+      isValid = false;
+    }
+
+    /* ===== НАПИТКИ ===== */
+    const selectedDrinks = [...drinksCheckboxes].filter(cb => cb.checked);
+
+    if (selectedDrinks.length === 0) {
+      addGlowGroup(
+        [...drinksCheckboxes].map(cb => cb.closest(".t-checkbox__control"))
+      );
+      isValid = false;
+    }
+
+    if (!isValid) {
+      e.preventDefault();
+    }
+
+  });
+
+  /* ===== Снятие свечения при вводе ===== */
+  nameInput.addEventListener("input", function () {
+    this.style.boxShadow = "none";
+  });
+
+  document.querySelectorAll(`input[name="${radioName}"]`)
+    .forEach(r => r.addEventListener("change", function () {
+      document.querySelectorAll(`input[name="${radioName}"]`)
+        .forEach(el => el.closest(".t-radio__control").style.boxShadow = "none");
+    }));
+
+  drinksCheckboxes.forEach(cb => {
+    cb.addEventListener("change", function () {
+      drinksCheckboxes.forEach(el =>
+        el.closest(".t-checkbox__control").style.boxShadow = "none"
+      );
+    });
+  });
+
+});
 </script></body></html>
