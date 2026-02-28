@@ -649,31 +649,22 @@ function showTildaErrorPopup() {
 }
 
 function setFieldsError(nameElement, attendanceElement, drinksElement) {
-	let isValid = true;
-	
 	const nameInput = document.getElementById("in-1531306243545"); 
 
     if (!nameElement) {
       addGlow(nameInput);
-      isValid = false;
     }
 
 	const selectedRadio = document.querySelector('input[name="Сможете ли присутствовать на нашем торжестве?"]:checked');
 
     if (!attendanceElement) {
       addGlow(selectedRadio);
-      isValid = false;
     }
 	
 	const drinksGroup = document.querySelector( '.t-input-group[data-field-name="Что предпочитаете из напитков?"] .t-input-block' );
 
     if (drinksElement.length === 0) {
       addGlow(drinksGroup);
-      isValid = false;
-    }
-
-    if (!isValid) {
-      e.preventDefault();
     }
 	
 	nameInput.addEventListener("input", function () { 
