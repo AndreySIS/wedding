@@ -629,18 +629,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const nameInput = document.getElementById("in-1531306243545");
 
   const radioName = "Сможете ли присутствовать на нашем торжестве?";
+
   const drinksGroup = document.querySelector(
-    '.t-input-group[data-field-name="Что предпочитаете из напитков?"]'
+    '.t-input-group[data-field-name="Что предпочитаете из напитков?"] .t-input-block'
   );
+
   const drinksCheckboxes = drinksGroup.querySelectorAll(
     'input[type="checkbox"].t-checkbox'
   );
 
+  const radioGroup = document.querySelector(
+    '.t-input-group[data-field-name="Сможете ли присутствовать на нашем торжестве?"] .t-input-block'
+  );
+
   function addGlow(element) {
-    element.style.transition = "box-shadow 0.3s ease";
-    element.style.boxShadow = "0 0 12px rgba(255, 0, 0, 0.5)";
+    element.style.transition = "box-shadow 0.4s ease";
+    element.style.boxShadow = "0 0 18px rgba(180, 0, 0, 0.45)";
+
     setTimeout(() => {
-      element.style.boxShadow = "none";
+      element.style.boxShadow = "0 0 0 rgba(0,0,0,0)";
     }, 3000);
   }
 
@@ -660,9 +667,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     if (!selectedRadio) {
-      const radioGroup = document.querySelector(
-        '.t-input-group[data-field-name="Сможете ли присутствовать на нашем торжестве?"]'
-      );
       addGlow(radioGroup);
       isValid = false;
     }
@@ -671,7 +675,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedDrinks = [...drinksCheckboxes].filter(cb => cb.checked);
 
     if (selectedDrinks.length === 0) {
-      addGlow(drinksGroup);
+      addGlow(drinksGroup); // 🔥 только чекбоксы, без заголовка
       isValid = false;
     }
 
@@ -689,9 +693,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll(`input[name="${radioName}"]`)
     .forEach(r => r.addEventListener("change", function () {
-      const radioGroup = document.querySelector(
-        '.t-input-group[data-field-name="Сможете ли присутствовать на нашем торжестве?"]'
-      );
       radioGroup.style.boxShadow = "none";
     }));
 
