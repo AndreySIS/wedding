@@ -709,7 +709,7 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
 		
 	if (!name || !attendance || drinks.length === 0) {
 		showTildaErrorPopup();
-		setFieldsError(nameElement, attendanceElement, drinksElement)
+		setFieldsError(name, attendance, drinks)
 		return;
 	}
 		
