@@ -644,7 +644,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function addGlow(element) {
     element.style.transition = "box-shadow 0.4s ease";
-    element.style.boxShadow = "0 0 18px rgba(180, 0, 0, 0.45)";
+    element.style.boxShadow = "inset 0 0 12px rgba(180, 0, 0, 0.45), 0 0 12px rgba(180, 0, 0, 0.45)";
 
     setTimeout(() => {
       element.style.boxShadow = "0 0 0 rgba(0,0,0,0)";
