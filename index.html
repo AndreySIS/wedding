@@ -578,11 +578,16 @@ function showTildaErrorPopup() {
     errorPopup.style.display = "block";
     document.body.classList.add("t-body_success-popup-showed");
 
-    // закрытие
-    errorPopup.querySelector(".js-errorbox-close").onclick = function () {
+    function closePopup() {
         errorPopup.style.display = "none";
         document.body.classList.remove("t-body_success-popup-showed");
-    };
+    }
+
+    // закрытие по крестику
+    errorPopup.querySelector(".js-errorbox-close").onclick = closePopup;
+
+    // авто-закрытие через 5 секунд
+    setTimeout(closePopup, 3000);
 }
 
 document.getElementById("form1134251896").addEventListener("submit", function(e){
