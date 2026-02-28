@@ -648,6 +648,54 @@ function showTildaErrorPopup() {
     setTimeout(closePopup, 3000);
 }
 
+function setFieldsError(nameElement, attendanceElement, drinksElement) {
+	let isValid = true;
+	
+    /* ===== ФИО ===== */
+    if (!nameElement) {
+      addGlow(nameInput);
+      isValid = false;
+    }
+
+    if (!attendanceElement) {
+      addGlow(radioGroup);
+      isValid = false;
+    }
+
+    if (drinks.length === 0) {
+      addGlow(drinksGroup);
+      isValid = false;
+    }
+
+    if (!isValid) {
+      e.preventDefault();
+    }
+	
+	nameInput.addEventListener("input", function () {
+		this.style.boxShadow = "none";
+	  });
+
+	document.querySelectorAll(`input[name="${radioName}"]`)
+	.forEach(r => r.addEventListener("change", function () {
+	  radioGroup.style.boxShadow = "none";
+	}));
+
+	drinksCheckboxes.forEach(cb => {
+	cb.addEventListener("change", function () {
+	  drinksGroup.style.boxShadow = "none";
+	});
+	});
+}
+
+function addGlow(element) {
+	element.style.transition = "box-shadow 0.4s ease";
+	element.style.boxShadow = "inset 0 0 12px rgba(180, 0, 0, 0.45), 0 0 12px rgba(180, 0, 0, 0.45)";
+
+	setTimeout(() => {
+	  element.style.boxShadow = "0 0 0 rgba(0,0,0,0)";
+	}, 3000);
+}
+
 document.getElementById("form1134251896").addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -661,6 +709,7 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
 		
 	if (!name || !attendance || drinks.length === 0) {
 		showTildaErrorPopup();
+		setFieldsError(nameElement, attendanceElement, drinksElement)
 		return;
 	}
 		
@@ -679,86 +728,5 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
             drinks: drinks
         })
     });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  function addGlow(element) {
-    element.style.transition = "box-shadow 0.4s ease";
-    element.style.boxShadow = "inset 0 0 12px rgba(180, 0, 0, 0.45), 0 0 12px rgba(180, 0, 0, 0.45)";
-
-    setTimeout(() => {
-      element.style.boxShadow = "0 0 0 rgba(0,0,0,0)";
-    }, 3000);
-  }
-  
-  const form = document.getElementById("form1134251896");
-
-  form.addEventListener("submit", function (e) {
-
-    let isValid = true;
-	
-	const nameInput = document.getElementById("in-1531306243545");
-
-	const radioName = "Сможете ли присутствовать на нашем торжестве?";
-
-	const drinksGroup = document.querySelector(
-	'.t-input-group[data-field-name="Что предпочитаете из напитков?"] .t-input-block'
-	);
-
-	const drinksCheckboxes = drinksGroup.querySelectorAll(
-	'input[type="checkbox"].t-checkbox'
-	);
-
-	const radioGroup = document.querySelector(
-	'.t-input-group[data-field-name="Сможете ли присутствовать на нашем торжестве?"] .t-input-block'
-	);
-
-    /* ===== ФИО ===== */
-    if (!nameInput.value.trim()) {
-      addGlow(nameInput);
-      isValid = false;
-    }
-
-    /* ===== RADIO ===== */
-    const selectedRadio = document.querySelector(
-      `input[name="${radioName}"]:checked`
-    );
-
-    if (!selectedRadio) {
-      addGlow(radioGroup);
-      isValid = false;
-    }
-
-    /* ===== НАПИТКИ ===== */
-    const selectedDrinks = [...drinksCheckboxes].filter(cb => cb.checked);
-
-    if (selectedDrinks.length === 0) {
-      addGlow(drinksGroup);
-      isValid = false;
-    }
-
-    if (!isValid) {
-      e.preventDefault();
-    }
-
-  });
-
-  /* ===== Снятие свечения при вводе ===== */
-
-  nameInput.addEventListener("input", function () {
-    this.style.boxShadow = "none";
-  });
-
-  document.querySelectorAll(`input[name="${radioName}"]`)
-    .forEach(r => r.addEventListener("change", function () {
-      radioGroup.style.boxShadow = "none";
-    }));
-
-  drinksCheckboxes.forEach(cb => {
-    cb.addEventListener("change", function () {
-      drinksGroup.style.boxShadow = "none";
-    });
-  });
-
 });
 </script></body></html>
