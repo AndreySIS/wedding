@@ -714,7 +714,7 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
     const tempForm = document.createElement("form");
     tempForm.method = "POST";
     tempForm.action = "https://script.google.com/macros/s/AKfycbyx8-fEsGrA0CKvNaPaKgIi4w9JAQQsIDNG1_BnLd21IX76GRqP3jOobnGkDNVzVYg/exec";
-	//tempForm.target = "hidden_iframe";
+	tempForm.target = "hidden_iframe";
     tempForm.style.display = "none";
 
     function addField(name, value) {
@@ -733,6 +733,6 @@ document.getElementById("form1134251896").addEventListener("submit", function(e)
     tempForm.submit();
     document.body.removeChild(tempForm);
 
-    form.reset();
+    tempForm.reset();
 });
 </script><iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe></body></html>
